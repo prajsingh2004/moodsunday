@@ -1,0 +1,90 @@
+.order {
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100svh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: 32px;
+  background: var(--paper);
+  color: var(--ink);
+  overflow: auto;
+}
+.order::backdrop {
+  background: rgba(23, 22, 27, 0.5);
+  backdrop-filter: blur(6px);
+}
+.order[open] {
+  animation: order-in 0.45s var(--ease);
+}
+.order[open]::backdrop {
+  animation: order-fade 0.35s ease;
+}
+@keyframes order-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+}
+@keyframes order-fade {
+  from { opacity: 0; }
+}
+.order__panel {
+  display: grid;
+  gap: 18px;
+  padding: clamp(24px, 5vw, 38px);
+}
+.order__title {
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+}
+.order__lede {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.order__summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: var(--paper-2);
+}
+.order__dot {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(23, 22, 27, 0.2);
+}
+.order__spec {
+  font-weight: 600;
+}
+.order__price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+.order__price span {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+.order__note {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.order__actions {
+  display: grid;
+  gap: 10px;
+}
+.order__actions .btn {
+  width: 100%;
+}
+.order__change {
+  justify-self: center;
+  padding: 10px;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}

@@ -1,0 +1,132 @@
+.cfg {
+  display: grid;
+  gap: clamp(22px, 3vw, 32px);
+  animation: cfg-in 0.7s var(--ease) both;
+}
+@keyframes cfg-in {
+  from { opacity: 0; transform: translateY(18px); }
+}
+.cfg__title {
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+}
+.cfg__pair {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+}
+.cfg__field {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: grid;
+  gap: 14px;
+}
+.cfg__field legend,
+.cfg__legend {
+  padding: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* segmented control — real radio inputs, sliding thumb */
+.seg {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+.seg__thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 3);
+  border-radius: 999px;
+  background: var(--ink);
+  transform: translateX(calc(var(--i) * 100%));
+  transition: transform 0.4s var(--ease);
+}
+.seg__opt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+.seg__opt input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.seg__opt span {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.3s;
+}
+.seg__opt input:checked + span {
+  color: var(--paper);
+}
+.seg__opt input:focus-visible + span {
+  outline: 3px solid var(--accent-deep);
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+/* quantity stepper */
+.qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+.qty button {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s var(--ease);
+}
+.qty button:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.06);
+}
+.qty button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.qty output {
+  min-width: 2.2ch;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 520px) {
+  .cfg__pair {
+    grid-template-columns: 1fr;
+  }
+  .qty {
+    justify-self: start;
+  }
+}

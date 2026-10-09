@@ -1,0 +1,68 @@
+.printer {
+  padding: clamp(64px, 10vw, 140px) 0;
+  background: var(--accent);
+}
+.printer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: center;
+}
+.printer__copy {
+  display: grid;
+  gap: 26px;
+}
+.printer__heading {
+  font-size: clamp(2.7rem, 7.4vw, 7rem);
+}
+.printer__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 8px 0 0;
+  list-style: none;
+}
+.printer__list li {
+  padding: 0.7em 1.2em;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.printer__visual {
+  display: grid;
+  place-items: center;
+}
+.printer__art {
+  width: min(100%, 520px);
+  height: auto;
+}
+
+/* Quiet ambient motion: the toolhead drifts, layers settle in once. */
+.printer__head {
+  animation: head-drift 9s ease-in-out infinite alternate;
+}
+@keyframes head-drift {
+  from { transform: translateX(-90px); }
+  to { transform: translateX(90px); }
+}
+.printer__layer {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: layer-pop 4.5s var(--ease) infinite;
+}
+@keyframes layer-pop {
+  0%, 12% { opacity: 0; transform: scaleX(0.6); }
+  30%, 88% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: scaleX(0.6); }
+}
+
+@media (max-width: 860px) {
+  .printer__grid {
+    grid-template-columns: 1fr;
+  }
+}

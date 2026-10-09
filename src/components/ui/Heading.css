@@ -1,0 +1,21 @@
+.display .line {
+  display: block;
+  overflow: hidden;
+  padding: 0.07em 0;
+  margin: -0.07em 0;
+}
+.display .line__inner {
+  display: block;
+  transform: translateY(108%);
+  transition: transform 0.95s var(--ease);
+  will-change: transform;
+}
+.display.is-shown .line__inner {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .display .line__inner {
+    transform: none;
+    transition: none;
+  }
+}
